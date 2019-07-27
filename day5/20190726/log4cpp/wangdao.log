@@ -1,0 +1,6 @@
+2019-07-26 21:54:47,451 mycategory [ALERT] this is alert message
+2019-07-26 21:54:47,451 mycategory [CRIT] this is crit message
+2019-07-26 21:54:47,451 mycategory [ERROR] this is error message
+2019-07-26 21:54:47,451 mycategory [WARN] this is warn message
+2019-07-26 21:54:47,451 mycategory [INFO] this is info message
+2019-07-26 21:54:47,451 mycategory [NOTICE] this is notice message

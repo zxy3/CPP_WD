@@ -1,0 +1,6 @@
+2019-07-26 22:10:39,988 [DEBUG] debug message
+2019-07-26 22:10:39,989 [ERROR] error message
+2019-07-26 22:10:39,989 [FATAL] emerg message
+2019-07-26 22:10:39,989 [INFO] info message
+2019-07-26 22:10:39,989 [FATAL] fatal message
+2019-07-26 22:10:39,989 [WARN] warn message

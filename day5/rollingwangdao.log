@@ -1,0 +1,4 @@
+2019-06-22 11:56:11,802 [FATAL] emerg message
+2019-06-22 11:56:11,802 [INFO] info message
+2019-06-22 11:56:11,802 [FATAL] fatal message
+2019-06-22 11:56:11,802 [WARN] warn message
