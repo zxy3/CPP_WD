@@ -1,9 +1,3 @@
-///
-/// @file    log4cpp1.cc
-/// @author  lemon(haohb13@gmail.com)
-/// @date    2019-06-22 10:59:15
-///
-
 #include <iostream>
 using std::cout;
 using std::endl;
