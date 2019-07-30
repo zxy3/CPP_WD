@@ -11,7 +11,7 @@ class Student::StudentImpl //StudentImpl共享Student类的所有成员
 		(int chinese = 0, int math = 0, int english = 0)
 			: _chinese(chinese), _math(math), _english(english)
 		{
-			cout << "Subject(int,int,int)" << endl;
+			cout << "1|Subject(int,int,int)" << endl;
 		}
 
 		void print() const
@@ -35,7 +35,7 @@ public:
 	StudentImpl(int ch, int ma, int en)
 		: _sub1(ch, ma, en)
 	{
-		cout << "StudentImpl(int,int,int,int)" << endl;
+		cout << "2|StudentImpl(int,int,int,int)" << endl;
 	}
 	// 析构函数
 	~StudentImpl() { cout << "~StudentImpl()" << endl; }
