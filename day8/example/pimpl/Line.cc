@@ -1,9 +1,3 @@
- ///
- /// @file    Point.cc
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-30 09:54:40
- ///
- 
 #include "Line.h"
 #include <iostream>
 using std::cout;
