@@ -7,8 +7,8 @@ class Student::StudentImpl //StudentImpl共享Student类的所有成员
 {
 	class Subject //内部类Subject只为Student进行服务,完成Student类的初始化
 	{
-	public:
-		Subject(int chinese = 0, int math = 0, int english = 0)
+	public:Subject
+		(int chinese = 0, int math = 0, int english = 0)
 			: _chinese(chinese), _math(math), _english(english)
 		{
 			cout << "Subject(int,int,int)" << endl;
@@ -69,5 +69,4 @@ void Student::printMessage() const
 void Student::StudentImpl::printMessage() const
 {
 	_sub1.print();
-	cout << endl;
 }
