@@ -1,9 +1,3 @@
- ///
- /// @file    Singleton.cc
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-24 11:32:07
- ///
- 
 #include <stdlib.h>
 #include <pthread.h>
 

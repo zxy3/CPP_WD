@@ -51,7 +51,7 @@ private:
 Student::Student(int x1, int y1, int x2)
 	: _pimpl(new StudentImpl(x1, y1, x2))
 {
-	cout << "Student(...)" << endl;
+	cout << "Student::Student(int x1, int y1, int x2)" << endl;
 }
 
 Student::~Student()

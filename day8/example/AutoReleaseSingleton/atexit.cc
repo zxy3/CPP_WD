@@ -1,9 +1,3 @@
- ///
- /// @file    atexit.cc
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-30 14:33:31
- ///
- 
 #include <stdlib.h>
 
 #include <iostream>
@@ -18,9 +12,9 @@ void display()
 int main(void)
 {
 	cout << "enter main function..." << endl;
+	// 程序终止的时候触发调用
 	::atexit(display);
 	::atexit(display);
- 
 	cout << "exit main function..." << endl;
 	return 0;
 }

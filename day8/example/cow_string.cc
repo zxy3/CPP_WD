@@ -1,9 +1,3 @@
- ///
- /// @file    cow_string.cc
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-30 15:49:29
- ///
- 
 #include <string.h>
 #include <iostream>
 using std::cout;

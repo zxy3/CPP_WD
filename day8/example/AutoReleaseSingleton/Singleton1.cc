@@ -1,8 +1,4 @@
- ///
- /// @file    Singleton.cc
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-24 11:32:07
- ///
+ ///自动析构1：嵌套类+自动对象
  
 #include <iostream>
 using std::cout;
@@ -28,7 +24,7 @@ class Singleton
 public:
 	static Singleton * getInstance()
 	{ //在多线程环境下是非线程安全的
-	  // 加锁
+	  //加锁
 		if(nullptr == _pInstance) {
 			_pInstance = new Singleton();
 		}

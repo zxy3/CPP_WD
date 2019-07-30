@@ -1,19 +1,10 @@
- ///
- /// @file    Singleton.cc
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-24 11:32:07
- ///
- 
 #include <stdlib.h>
 #include <iostream>
 using std::cout;
 using std::endl;
 
-
 //单例对象自动释放
 //方法二: 静态成员函数 + atexit
-
-
 class Singleton
 {
 public:
