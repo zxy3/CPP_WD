@@ -41,7 +41,7 @@ public:
     friend class Warrior;
     static int makingSeq[2][WARRIOR_NUM];
     void Init(int color_, int lv);
-    
+
     ~Headquarter();
     int Produce(int nTime);
     string GetColor();
