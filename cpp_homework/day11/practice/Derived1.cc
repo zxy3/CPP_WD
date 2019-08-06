@@ -1,3 +1,4 @@
+///继承的调用
 #include <iostream>
 using namespace std;
 
@@ -13,14 +14,14 @@ public:
     base(int base)
         : _base(base)
     {
-        cout << "这是基类的构造函数:"
+        cout << "基类 --> base()  "
              << _base << endl;
     }
     // ~base();
     // 设置一个虚函数
     virtual void print()
     {
-        cout << "这是基类的虚函数" << endl;
+        cout << "基类 ---> virtual void print()" << endl;
     }
     // 调用自己的虚函数
     void test1()
@@ -49,13 +50,13 @@ public:
         : base(base1),
           _child(child)
     {
-        cout << "这里是派生类的构造函数。" << endl;
+        cout << "派生类 ---> child(intn base1,int shild)" << endl;
     }
     // ~child();
     // 派生类的打印函数
     void print()
     {
-        cout << "这里是派生类的打印函数：" << _child << endl;
+        cout << "派生类 ---> print()  " << _child << endl;
     }
 };
 // 测试类
