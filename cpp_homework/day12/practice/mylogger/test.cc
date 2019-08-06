@@ -1,7 +1,5 @@
 #ifndef __MYLOG_H__
 #define __MYLOG_H__
-
-
 #include <log4cpp/Category.hh>
 #include <log4cpp/Priority.hh>
 #include <log4cpp/Appender.hh>
@@ -14,8 +12,6 @@
 using std ::cout;
 using std ::endl;
 using namespace std;
-
-
 enum definePriority
 {
     ALERT,
@@ -34,7 +30,7 @@ public:
     template <typename... Args>
     void alert(Args... args);
     template <typename... Args>
-    void crit(Args... args);  // string msg,number,str
+    void crit(Args... args);
     template <typename... Args>
     void error(Args... args);
     template <typename... Args>
@@ -143,10 +139,7 @@ template <typename... Args>
 inline void
 mylog::info(Args... args)
 {
-
-    mycategory.info(args...); //整个包 msg number str 
-
-    //main --> loginfo (msg, args)-->info(args) (系统拆包)
+    mycategory.info(args...);
 }
 template <typename... Args>
 inline void
@@ -162,54 +155,48 @@ inline string getLineNumber(int lineNumber)
     return oss.str();
 }
 
-//拼接语句 //std:to_string(__LINE__) 把整型转string //把要输出的消息拼接上文件名，所在函数名，所在行号;msg是consc_str()函数 
-#define makeMsg(msg) string(msg).append(" [fileName:").append(__FILE__)\
- .append(" funcName:").append(__FUNCTION__)\
- .append(" lineNumber:").append(getLineNumber(__LINE__))\ .append("]").c_str()
+#define makeMsg(msg) string(msg).append("
+[fileName:").append(__FILE__)\
+.append("
+funcName:").append(__FUNCTION__)\
+.append("
+lineNumber:").append(getLineNumber(__LINE__))\
+.append("]").c_str()
+
 mylog *log = mylog::getInstance(); //创建对象
 
 #define Logpriority(priority) log->Priority(priority)
 #define LogDestroy() mylog::destroy()
 
-
 template <typename... Args>
 void LogAlert(string msg, Args... args)
 {
-
-
- //   log->alert(makeMsg(msg), args...);
+    log->alert(makeMsg(msg), args...);
 }
 template <typename... Args>
 void LogCrit(string msg, Args... args)
 {
- //   log->crit(makeMsg(msg), args...);
+    log->crit(makeMsg(msg), args...);
 }
-
-    template<typename... Args> void
-    LogError(string msg, Args... args)
+template <typename... Args>
+void LogError(string msg, Args... args)
 {
-  //  log->error(makeMsg(msg), args...);
+    log->error(makeMsg(msg), args...);
 }
-
-    template<typename... Args> void
-    LogWarn(string msg, Args... args)
+template <typename... Args>
+void LogWarn(string msg, Args... args)
 {
-  //  log->warn(makeMsg(msg), args...);
+    log->warn(makeMsg(msg), args...);
 }
-
-    template<typename... Args> void
-    LogInfo(string msg, Args... args)
+template <typename... Args>
+void LogInfo(string msg, Args... args)
 {
-         
-        cout<<"-------------"<<msg<<endl;
-        cout<<"-------------"<<sizeof...(args)<<endl;
-      log->info(makeMsg(msg), args...);
+    log->info(makeMsg(msg), args...);
 }
-
-    template<typename... Args> void
-    LogDebug(string msg, Args... args)
+template <typename... Args>
+void LogDebug(string msg, Args... args)
 {
- //   log->debug(makeMsg(msg), args...);
+    log->debug(makeMsg(msg), args...);
 }
 #endif
 
@@ -220,14 +207,14 @@ int main(void)
     const char *pstr = "hello, log4cpp";
     LogInfo("this is an info message. number = %d, str = %s ", number,
             pstr);
-    // LogError("Message");
-    // LogWarn("Message");
-    // LogDebug("Message");
-    // Logpriority(ERROR);
-    // LogError("Message");
-    // LogWarn("Message");
-    // LogDebug("Message");
-    // Logpriority(DEBUG);
+    LogError("Message");
+    LogWarn("Message");
+    LogDebug("Message");
+    Logpriority(ERROR);
+    LogError("Message");
+    LogWarn("Message");
+    LogDebug("Message");
+    Logpriority(DEBUG);
     LogDestroy();
     return 0;
 }
