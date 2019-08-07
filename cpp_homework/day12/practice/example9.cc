@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     //调用模板实例化生成的char Max(char a,char b)
     char cRet = Max(i1, i2);
     // 执行普通函数，并没有取到值
-    cout << "char ---> " << cRet << endl;
+    cout << "char -------> " << cRet << endl;
     //模板参数和返回值可以分开转换
     // 隐式转换
     //调用模板实例化生成的char Max(char a,char b)，最后将返回值隐式转换成int型
