@@ -36,22 +36,24 @@ public:
     }
 
     // 先查找旧 key 是否存在，如果存在，将节点移动到首部。
-    // 如果不存在，插入新节点。
+    // 如果不存在，插入新节点。--相当于更新veluad的值
     // 如果容量超限，删除使用频率最少的节点。
     void put(int key, int value)
     {
+        // 查找
         auto it = _m.find(key);
         if (it != _m.end())
         {
             _list.erase(it->second);
         }
+        // 头部添加节点
         _list.push_front(make_pair(key, value));
         _m[key] = _list.begin();
         if (_list.size() > _cap)
         {
             int key = _list.back().first;
             _m.erase(key);
-            _list.pop_back();
+            _list.pop_back(); //删除容器中最后一个元素，并改变容器的大小
         }
     }
 
