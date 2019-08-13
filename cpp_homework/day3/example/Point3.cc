@@ -11,18 +11,14 @@ using std::endl;
 class Point
 {
 public:
-	Point() = default;
-#if 0
 	Point()
 	: _ix(0)
 	, _iy(0)
 	{
 		cout << "Point()" << endl;
 	}
-#endif
 
-	explicit //禁止隐式（转换）调用
-	Point(int ix, int iy = 0)
+	Point(int ix, int iy)
 	: _ix(ix)   
 	, _iy(iy)
 	{
@@ -66,8 +62,8 @@ public:
 	}
 
 private:
-	int _ix = 0;
-	int _iy = 0;
+	int _ix;
+	int _iy;
 };
 
 void func1(const Point & rhs)
@@ -96,10 +92,6 @@ int main(void)
 
 	points[0].print();
 	points[2].print();
-
-	Point pt1 = 5;//Point(5) 隐式转换: 先产生临时对象, 再进行赋值
-	cout << "pt1 = ";
-	pt1.print();
 
 	return 0;
 }
