@@ -1,9 +1,3 @@
- ///
- /// @file    unique_ptr.cc
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-08 14:50:13
- ///
- 
 #include <iostream>
 #include <memory>
 #include <vector>
