@@ -1,9 +1,3 @@
- ///
- /// @file    Observer.cc
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-13 11:22:40
- ///
- 
 #include "Observer.h"
 #include "Subject.h"
 

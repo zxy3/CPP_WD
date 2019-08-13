@@ -1,9 +1,3 @@
- ///
- /// @file    Observer.h
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-13 11:04:21
- ///
- 
 #pragma once
 #include <iostream>
 #include <string>

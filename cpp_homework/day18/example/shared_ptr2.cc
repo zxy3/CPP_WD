@@ -1,9 +1,3 @@
- ///
- /// @file    shared_ptr2.cc
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-08 16:13:08
- ///
- 
 #include <iostream>
 #include <memory>
 using std::cout;

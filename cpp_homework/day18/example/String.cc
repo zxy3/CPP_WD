@@ -1,26 +1,19 @@
- ///
- /// @file    String.cc
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-08 10:55:41
- ///
- 
 #include <string.h>
-
 #include <iostream>
 #include <vector>
 using namespace std;
- 
+
 class String
 {
 public:
 	String()
-	: _pstr(nullptr)
+		: _pstr(nullptr)
 	{
 		cout << "String()" << endl;
 	}
 
-	String(const char * pstr)
-	: _pstr(new char[strlen(pstr) + 1]())
+	String(const char *pstr)
+		: _pstr(new char[strlen(pstr) + 1]())
 	{
 		strcpy(_pstr, pstr);
 		cout << "String(const char * pstr)" << endl;
@@ -29,19 +22,20 @@ public:
 	//具有移动语义的函数要优先于具有复制控制语义函数的执行
 
 	//复制构造函数
-	String(const String & rhs)
-	: _pstr(new char[strlen(rhs._pstr) + 1]())
+	String(const String &rhs)
+		: _pstr(new char[strlen(rhs._pstr) + 1]())
 	{
 		cout << "String(const String &)" << endl;
 		strcpy(_pstr, rhs._pstr);
 	}
 
 	//赋值函数
-	String & operator=(const String & rhs)
+	String &operator=(const String &rhs)
 	{
 		cout << "String & operator=(const String&)" << endl;
-		if(this != & rhs) {
-			delete [] _pstr;
+		if (this != &rhs)
+		{
+			delete[] _pstr;
 
 			_pstr = new char[strlen(rhs._pstr) + 1]();
 			strcpy(_pstr, rhs._pstr);
@@ -49,10 +43,10 @@ public:
 		return *this;
 	}
 
-#if 1
+#if 0
 	//移动构造函数
-	String(String && rhs)
-	: _pstr(rhs._pstr)
+	String(String &&rhs)
+		: _pstr(rhs._pstr)
 	{
 		rhs._pstr = nullptr;
 		cout << "String(String && )" << endl;
@@ -60,11 +54,12 @@ public:
 #endif
 
 	//移动赋值函数
-	String & operator=(String && rhs)
+	String &operator=(String &&rhs)
 	{
 		cout << "String & operator=(String&&)" << endl;
-		if(this != &rhs) {
-			delete [] _pstr;
+		if (this != &rhs)
+		{
+			delete[] _pstr;
 
 			_pstr = rhs._pstr;
 			rhs._pstr = nullptr;
@@ -72,11 +67,14 @@ public:
 		return *this;
 	}
 
-	char & operator[](int idx)
+	char &operator[](int idx)
 	{
-		if(idx >= 0 || idx < strlen(_pstr)) {
+		if (idx >= 0 || idx < strlen(_pstr))
+		{
 			return _pstr[idx];
-		} else {
+		}
+		else
+		{
 			cout << " idx 越界!" << endl;
 			static char nullchar = '\0';
 			return nullchar;
@@ -85,26 +83,29 @@ public:
 
 	void print() const
 	{
-		if(_pstr)
+		if (_pstr)
 			cout << _pstr << endl;
 	}
 
 	~String()
 	{
-		if(_pstr)
-			delete [] _pstr;
+		if (_pstr)
+			delete[] _pstr;
 		cout << "~String()" << endl;
 	}
 
-	int	size()const 
-	{	return strlen(_pstr);}
+	int size() const
+	{
+		return strlen(_pstr);
+	}
 
-	friend std::ostream & operator<<(std::ostream & os, const String & rhs);
+	friend std::ostream &operator<<(std::ostream &os, const String &rhs);
+
 private:
-	char * _pstr;
+	char *_pstr;
 };
 
-std::ostream & operator<<(std::ostream & os, const String & rhs)
+std::ostream &operator<<(std::ostream &os, const String &rhs)
 {
 	os << rhs._pstr;
 	return os;
@@ -112,28 +113,28 @@ std::ostream & operator<<(std::ostream & os, const String & rhs)
 int test0(void)
 {
 	vector<String> vec;
-	vec.push_back("hello,world");//临时对象 右值
+	vec.push_back("hello,world"); //临时对象 右值
 
 	vec[0].print();
 
-//	String s("wangdao");// 左值
-//	vec.push_back(s);
+	//	String s("wangdao");// 左值
+	//	vec.push_back(s);
 
 	return 0;
 }
 
 void test1()
 {
-	String s1 = "hello";//左值
+	String s1 = "hello"; //左值
 	cout << "s1 = " << s1 << endl;
 
 	String s2("world");
 	//s2 = String("wangdao");
-	s2 = std::move(s1);//将一个左值显式的转换为右值
+	s2 = std::move(s1); //将一个左值显式的转换为右值
 	//...
 	cout << "s2 = " << s2 << endl;
 	//cout << "s1 = " << s1 << endl;//s1 本身的内容已经被转移走了
-	
+
 	cout << "...." << endl;
 
 	//s1 = std::move(s1);
@@ -145,16 +146,14 @@ void test1()
 String s1("hello");
 
 String getString()
-{	
-	String s("wangdao");//s是局部对象,马上就要被销毁 ,
-					    //类中定义了具有移动语义函数,
-					    //函数返回值是对象,此时return会
-	return s;			//调用移动构造函数, 不会调用复制构造函数
+{
+	String s("wangdao"); //s是局部对象,马上就要被销毁 ,
+						 //类中定义了具有移动语义函数,
+						 //函数返回值是对象,此时return会
+	return s;			 //调用移动构造函数, 不会调用复制构造函数
 
 	//return s1;//
 }
-
-
 
 void test2()
 {
@@ -163,7 +162,8 @@ void test2()
 
 int main(void)
 {
+	test0();
 	//test1();
-	test2();
+	// test2();
 	return 0;
 }
