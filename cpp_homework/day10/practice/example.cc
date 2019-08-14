@@ -169,6 +169,19 @@ string Warrior::weapon[WEAPON_NUM] = {"sword", "bomb", "arrow"};
 int Warrior::initialLifeValue[WARRIOR_NUM];
 int Headquarter::makingSeq[2][WARRIOR_NUM] = {{2, 3, 4, 1, 0}, {3, 0, 1, 2, 4}};
 
+class GameTime
+{
+public:
+    GameTime() = default;
+    // GameTime() ;
+    void updatetime(void)
+    {
+    }
+
+private:
+    int _min = 0;
+    int _hour = 0;
+};
 int main()
 {
     int t;
