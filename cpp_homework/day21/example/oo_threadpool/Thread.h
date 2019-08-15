@@ -1,26 +1,26 @@
- ///
- /// @file    Thread.h
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-15 09:40:52
- ///
- 
+///
+/// @file    Thread.h
+/// @author  lemon(haohb13@gmail.com)
+/// @date    2019-07-15 09:40:52
+///
+
 #pragma once
 
 #include "Noncopyable.h"
 
 #include <pthread.h>
- 
+
 namespace wd
 {
 
 class Thread
-: Noncopyable
+	: Noncopyable
 {
 public:
 	Thread()
-	: _pthid(0)
-	, _isRunning(false)
-	{}
+		: _pthid(0), _isRunning(false)
+	{
+	}
 
 	void start();
 	void join();
@@ -28,12 +28,13 @@ public:
 	virtual ~Thread();
 
 private:
-	virtual void run()=0;//待执行的任务
-	static void * threadfunc(void * arg);
+	// 因为是面向对象，所以是抽象类
+	virtual void run() = 0; //待执行的任务
+	static void *threadfunc(void *arg);
 
 private:
 	pthread_t _pthid;
 	bool _isRunning;
 };
 
-}//end of namespace wd
+} //end of namespace wd
