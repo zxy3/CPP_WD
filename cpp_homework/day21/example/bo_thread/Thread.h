@@ -1,9 +1,9 @@
- ///
- /// @file    Thread.h
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-15 09:40:52
- ///
- 
+///
+/// @file    Thread.h
+/// @author  lemon(haohb13@gmail.com)
+/// @date    2019-07-15 09:40:52
+///
+
 #pragma once
 
 #include "Noncopyable.h"
@@ -11,22 +11,21 @@
 #include <pthread.h>
 #include <functional>
 using std::function;
- 
+
 namespace wd
 {
 
 //具体类
 class Thread
-: Noncopyable
+	: Noncopyable
 {
 public:
 	using ThreadCallback = function<void()>;
 
-	Thread(ThreadCallback && cb)
-	: _pthid(0)
-	, _isRunning(false)
-	, _cb(std::move(cb))
-	{}
+	Thread(ThreadCallback &&cb)
+		: _pthid(0), _isRunning(false), _cb(std::move(cb))
+	{
+	}
 
 	void start();
 	void join();
@@ -34,7 +33,8 @@ public:
 	~Thread();
 
 private:
-	static void * threadfunc(void * arg);
+	// 否则含有一个隐含的this指针，设置为静态不会多出一个参数
+	static void *threadfunc(void *arg);
 
 private:
 	pthread_t _pthid;
@@ -42,4 +42,4 @@ private:
 	ThreadCallback _cb;
 };
 
-}//end of namespace wd
+} //end of namespace wd
