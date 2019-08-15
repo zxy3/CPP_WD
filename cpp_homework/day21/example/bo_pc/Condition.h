@@ -11,7 +11,10 @@
 #include <iostream>
 using std::cout;
 using std::endl;
- 
+
+
+
+// 开头都是同一个命名空间
 namespace wd
 {
 

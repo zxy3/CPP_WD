@@ -13,7 +13,7 @@ using std::endl;
 
 namespace wd
 {
-
+// 相同
 void Thread::start()
 {
 	pthread_create(&_pthid, nullptr, threadfunc, this);	
@@ -24,11 +24,12 @@ void * Thread::threadfunc(void * arg)
 {
 	Thread * pthread = static_cast<Thread*>(arg);
 	if(pthread)
+	// 派生类 函数执行体实际上要调用的方法
 		pthread->run();	
 
 	return nullptr;
 }
-
+// 相同
 void Thread::join()
 {
 	if(_isRunning) {

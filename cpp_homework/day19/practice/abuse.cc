@@ -32,7 +32,7 @@ public:
 
     ~Point()
     {
-        cout << "~Point()" << endl;
+        // cout << "~Point()" << endl;
     }
 
 private:
@@ -65,16 +65,44 @@ void test1()
 {
     Point *pt = new Point(1, 2);
     shared_ptr<Point> up1(pt);
-    shared_ptr<Point> up2(pt);  //此时不会增加引用计数(悬垂指针)
-    shared_ptr<Point> up2(up1); //此时会增加引用计数
+    shared_ptr<Point> up2(pt); //此时不会增加引用计数(悬垂指针)
+    // shared_ptr<Point> up2(up1); //此时会增加引用计数
     cout << "shared_ptr up1 引用计数 ----> " << up1.use_count() << endl;
     cout << "shared_ptr up2 引用计数 ----> " << up2.use_count() << endl;
 }
-
+// test2
+void test2()
+{
+    //Point * pt = new Point(1, 2);
+    //用指针指向临时对象，也是可以的
+    shared_ptr<Point> sp1(new Point(1, 2));
+    shared_ptr<Point> sp2(new Point(3, 2));
+    // 将sp2设置成sp1，不会影响到sp1
+    sp2.reset(sp1.get());
+    cout << "sp1 ----> " << sp1 << endl;
+    cout << "sp1 ----> ";
+    sp1->print();
+}
+// test3
+void test3()
+{
+    cout << ">> test3()" << endl;
+    shared_ptr<Point> sp1(new Point(1, 2));
+    shared_ptr<Point> sp2(new Point(3, 2));
+    // 用一个表达式给sp3赋值
+    cout << "sp2.get() ---> " << sp2.get() << endl;
+    cout << "sp1->addPoint(sp2.get()) --->" << sp1->addPoint(sp2.get()) << endl;
+    cout << "sp1->addPoint(sp2.get())->print() ---> ";
+    sp1->addPoint(sp2.get())->print();
+    shared_ptr<Point> sp3(sp1->addPoint(sp2.get()));
+    cout << "sp3' use_count = " << sp3.use_count() << endl;
+}
 // main
 int main(void)
 {
     // test0();
-    test1();
+    // test1();
+    // test2();
+    test3();
     return 0;
 }

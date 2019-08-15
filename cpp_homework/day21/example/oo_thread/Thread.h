@@ -9,7 +9,7 @@
 #include "Noncopyable.h"
 
 #include <pthread.h>
- 
+//  面向对象的思想---->执行函数
 namespace wd
 {
 

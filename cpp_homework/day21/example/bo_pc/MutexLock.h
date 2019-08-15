@@ -66,7 +66,7 @@ private:
 	bool _isLocking;
 };
 
-
+//创建对象的时候自动加锁，析构的时候，自动解锁 
 class MutexLockGuard
 {
 public:

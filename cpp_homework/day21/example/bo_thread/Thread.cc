@@ -9,7 +9,7 @@
 #include <iostream>
 using std::cout;
 using std::endl;
-
+// 基于BO的直接实现就可以了，不用继承。
 namespace wd
 {
 
@@ -28,7 +28,7 @@ void *Thread::threadfunc(void *arg)
 	// 在执行具体的任务
 	if (pthread)
 	{
-		// 调用派生类的方法
+		// 回调函数
 		pthread->_cb();
 	}
 
@@ -44,8 +44,14 @@ void Thread::join()
 
 Thread::~Thread()
 {
+	// 如果发现当前的线程存在，将线程的执行，交给系统
 	if (_isRunning)
-		pthread_detach(_pthid);
+	{
+		cout << "Thread::~Thread()" << endl;
+	}
+	// 相当于将线程释放给系统，由系统再去回收
+	// 可以放打印信息,看到析构函数的一个执行
+	// pthread_detach(_pthid);
 }
 
 } //end of namespace wd
