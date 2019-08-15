@@ -42,7 +42,7 @@ int main(void)
 	thread->join();
 
 	MyThread thread1;
-	MyThread thread2 = thread1;
+	// MyThread thread2 = thread1;
  
 	return 0;
 }

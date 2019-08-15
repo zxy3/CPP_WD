@@ -16,7 +16,7 @@ using std::function;
 namespace wd
 {
 
-//具体类
+//线程类
 class Thread
 	: Noncopyable
 {

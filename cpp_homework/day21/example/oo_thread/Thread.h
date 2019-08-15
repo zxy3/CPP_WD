@@ -1,9 +1,3 @@
- ///
- /// @file    Thread.h
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-15 09:40:52
- ///
- 
 #pragma once
 
 #include "Noncopyable.h"

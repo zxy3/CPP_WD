@@ -48,7 +48,7 @@ void task_process(int)
 	while (cnt--)
 	{
 		int number = ::rand() % 100;
-		cout << "sub Thread " << pthread_self()
+		cout << ">>>>sub Thread " << pthread_self()
 			 << ": number = " << number << endl;
 		::sleep(1);
 	}
