@@ -58,7 +58,7 @@ void Threadpool::stop()
 		for(auto & thread : _threads) {
 			thread->join();
 		}
-	}
+	}ppPPP
 }
 
 void Threadpool::addTask(Task &&task)
