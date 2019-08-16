@@ -14,7 +14,8 @@ Threadpool::Threadpool(size_t threadNum, size_t queSize)
 	: _threadNum(threadNum), _queSize(queSize), _taskque(queSize), _isExit(false)
 {
 	// 默认是要退出的
-	// 只是开辟了空间，此时没有元素，因此不能使用下标运算符
+	// 只是开辟了空间，才可以调用子线程
+	// 此时没有元素，因此不能使用下标运算符
 	_threads.reserve(_threadNum);
 }
 
@@ -26,16 +27,16 @@ Threadpool::~Threadpool()
 
 void Threadpool::start()
 {
-	// 开启线程池的运行
+	// 开启线程池的运行，让子线程跑起来
 	// 通过循环，创建线程对象
 	for (size_t idx = 0; idx != _threadNum; ++idx)
 	{
-		// 用一个指针指针托管
+		// 用一个unique_ptr指针托管
 		unique_ptr<Thread> thread(new WorkerThread(*this));
 		_threads.push_back(std::move(thread));
 		//_threads.push_back(thread);
 	}
-
+	// 让每个线程对象，拿到任务，跑起来
 	for (auto &thread : _threads)
 	{
 		thread->start();
@@ -77,6 +78,7 @@ void Threadpool::threadfunc()
 {
 	while (!_isExit)
 	{
+		// 拿到任务 getTask拿到taslkque的pull方法
 		Task *task = getTask();
 		if (task)
 			task->process(); //当任务执行的速度过快

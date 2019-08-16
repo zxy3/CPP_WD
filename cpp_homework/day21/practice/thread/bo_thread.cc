@@ -1,4 +1,5 @@
 ///基于对象线程类封装：没有继承，没有虚函数，直接实现
+// 虚函数的接口变成了一个回调函数
 #include <iostream>
 #include <memory>
 #include <pthread.h>
@@ -20,6 +21,7 @@ protected:
     Noncopyable(const Noncopyable &) = delete;
     Noncopyable &operator=(const Noncopyable &) = delete;
 };
+// bind 和function接口的复习
 
 //Thread
 class Thread
@@ -28,7 +30,7 @@ class Thread
 public:
     // 代表的就是func
     using ThreadCallback = function<void()>;
-    // cb 是一个回调函数
+    // cb 是一个回调函数，可以注册不同的函数对象
     // 构造函数 将cb用右值引用的方式传递进来
     Thread(ThreadCallback &&cb)
         : _pthid(0), _isRunning(false), _cb(std::move(cb))
@@ -61,9 +63,10 @@ void Thread::start()
 
 void *Thread::threadfunc(void *arg)
 {
+    // 执行回调函数
     Thread *pthread = static_cast<Thread *>(arg);
     if (pthread)
-        // 派生类 函数执行体实际上要调用的方法
+        //与oo不同的点
         pthread->_cb();
 
     return nullptr;

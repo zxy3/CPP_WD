@@ -1,9 +1,3 @@
- ///
- /// @file    Threadpool.h
- /// @author  lemon(haohb13@gmail.com)
- /// @date    2019-07-15 15:10:13
- ///
- 
 #pragma once
 
 #include "TaskQueue.h"
@@ -11,8 +5,8 @@
 #include <vector>
 #include <memory>
 
-using std::vector;
 using std::unique_ptr;
+using std::vector;
 
 namespace wd
 {
@@ -22,16 +16,21 @@ class Thread;
 class Threadpool
 {
 	friend class WorkerThread;
+
 public:
+	// 线程池的构造函数
 	Threadpool(size_t threadNum = 4, size_t queSize = 10);
 	~Threadpool();
 
 	void start();
-	void addTask(Task && task);
+	//
+	void addTask(Task &&task);
 
 	void stop();
+
 private:
 	Task getTask();
+	// 把每个回调函数注册给每个子线程
 	void threadfunc();
 
 private:
@@ -42,5 +41,4 @@ private:
 	bool _isExit;
 };
 
-
-}//end of namespace wd
+} //end of namespace wd

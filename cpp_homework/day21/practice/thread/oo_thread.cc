@@ -44,11 +44,15 @@ public:
     void join();
 
 private:
+    // run是对外抽象出来的接口，由子线程运行，不能直接被线程对象调用
+    // 因此被设置为纯虚函数
+    // 纯虚函数，使用多态的机制
     virtual void run() = 0; //待执行的任务
     static void *threadfunc(void *arg);
 
 private:
     pthread_t _pthid;
+    // 设置描述当前线程运行的状态
     bool _isRunning;
 };
 
@@ -56,18 +60,20 @@ private:
 // 开始线程
 void Thread::start()
 {
+    // 3，线程方法，4线程地址
     pthread_create(&_pthid, nullptr, threadfunc, this);
     // 将开关设置为true
     _isRunning = true;
 }
-// 线程函数执行体
+// 线程函数执行体，参数和返回值必须要void*,需要消除
 void *Thread::threadfunc(void *arg)
 {
-    // 强转为线程指针
+    // 强转为线程指针，才能拿到线程对象
     Thread *pthread = static_cast<Thread *>(arg);
-    // 运行run
+    // 运行run，真正要执行的方法体
     if (pthread)
-        // 派生类 函数执行体实际上要调用的方法
+        // 抽象出来真正要做的任务
+        // 派生类的指针，指向基类的方法，再从虚表找到派生类的方法
         pthread->run();
     // 运行完毕后设置为空
     return nullptr;
@@ -117,10 +123,11 @@ class MyThread
 
 int main(void)
 {
+    // main函数是主线程
     unique_ptr<Thread> thread(new MyThread());
-    // 启动线程
+    // 产生一个子线程
     thread->start();
-    // 等待回收线程
+    // 等待回收子线程
     thread->join();
 
     MyThread thread1;

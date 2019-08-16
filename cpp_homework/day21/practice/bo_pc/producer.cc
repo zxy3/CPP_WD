@@ -58,6 +58,7 @@ class Condition;
 class Producer
 {
 public:
+    // 生产数据
     void produce(TaskQueue &taskque)
     {
         ::srand(::clock());
@@ -152,6 +153,7 @@ class Consumer
 {
 public:
     // bo写法
+    // 消费数据
     void consume(TaskQueue &taskque)
     {
         int cnt = 20;
@@ -308,7 +310,7 @@ void TaskQueue::push(ElemType elem)
 ElemType TaskQueue::pop()
 {
     MutexLockGuard autolock(_mutex);
-
+    // 让每个线程在wait前被唤醒，解决一直被阻塞的情况
     while (empty())
     {
         _notEmpty.wait();
@@ -325,7 +327,8 @@ ElemType TaskQueue::pop()
 int main(void)
 {
     TaskQueue taskque(10);
-
+    // Producer()用来创建一个临时对象，也可以创建指针
+    // std::ref引用包装器
     unique_ptr<Thread> producer(new Thread(
         std::bind(&Producer::produce, Producer(), std::ref(taskque))));
 
@@ -339,3 +342,4 @@ int main(void)
 
     return 0;
 }
+// 需要自己写，花时间感受，先想清楚，再敲代码

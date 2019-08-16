@@ -22,6 +22,7 @@ public:
 	{
 		::srand(::time(nullptr));	
 		int number = ::rand() % 100;
+		// 需求：给线程取个名字
 		cout << ">>> sub Thread " << pthread_self()
 			 << " Mytask: number = " << number << endl;
 		::sleep(1);
