@@ -1,18 +1,13 @@
-///
-/// @file    WorkerThread.h
-/// @author  lemon(haohb13@gmail.com)
-/// @date    2019-07-15 15:19:07
-///
-
-//  头文件中，只提供接口
 #pragma once
 
 #include "Thread.h"
 
+// 头文件中只提供接口
 namespace wd
 {
 // 为了防止循环引用，使用线程池的引用
 class Threadpool;
+
 class WorkerThread
 	: public Thread
 {
@@ -23,7 +18,7 @@ public:
 	void run();
 
 private:
-	// 需要一个线程池的引用
+	// 需要一个线程池的引用，引用的初始化，只能在初始化表达式中进行
 	Threadpool &_threadpool;
 };
 

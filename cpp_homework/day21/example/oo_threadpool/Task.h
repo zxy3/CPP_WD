@@ -1,12 +1,6 @@
-///
-/// @file    Task.h
-/// @author  lemon(haohb13@gmail.com)
-/// @date    2019-07-15 15:06:36
-///
-
-//  任务接口
+//任务接口
 #pragma once
-
+// 保证头文件只被编译一次
 namespace wd
 {
 

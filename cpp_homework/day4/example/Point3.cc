@@ -20,8 +20,8 @@ public:
 	, _ref(_ix)
 	{
 		cout << "Point(int, int)" << endl;
-		//_ix = ix;//error
-		//_iy = iy;
+		//_ix = ix; //error
+		//_iy = iy; 
 	}
 
 	void print()
@@ -46,9 +46,9 @@ private:
 int main(void)
 {
 	Point pt(1, 2);
-	//pt.~Point();//析构函数是可以显式调用
-				//一般情况下不这样做
-	//pt._ix = 10;//error
+	//pt.~Point();   //析构函数是可以显式调用
+				     //一般情况下不这样做
+	//pt._ix = 10;   //error
 	
 	//Point pt2 = 10;//存在隐式转换, 通过构造函数进行
 	cout << "pt = ";
