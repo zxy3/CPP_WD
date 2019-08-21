@@ -41,5 +41,6 @@ unsigned short InetAddress::port() const
 {
 	return ntohs(_addr.sin_port);
 }
+// struct sockaddr_in * getInetAddressPtr() {	return &_addr;	}
 
 }//end of namespace wd
