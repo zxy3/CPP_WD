@@ -43,7 +43,7 @@ void * threadfunc2(void * arg)
 	printf("threadfunc2: &number = %p\n", &number);
 	return nullptr;
 }
-
+// 测试函数
 int main(void)
 {
 	printf("mainthread: &errno = %p\n", &errno);
