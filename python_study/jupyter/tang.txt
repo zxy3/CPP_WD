@@ -1,0 +1,4 @@
+# 把下面的这些东西都放到上面的文件里面
+hello python
+tang yu di
+jin tian tian qi bu cuo
